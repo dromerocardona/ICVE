@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iglesia Cristiana Vida Eterna</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -13,6 +14,7 @@
         .hero {
             position: relative; /* Needed for ::before positioning */
             overflow: hidden; /* Ensures pseudo-element stays within bounds */
+            transition: opacity 0.1s ease; /* Smooth opacity transition */
         }
         .hero::before {
             content: '';
@@ -26,7 +28,6 @@
             background-position: center;
             background-attachment: fixed; /* Optional: Parallax effect */
             filter: blur(5px); /* Apply blur to background */
-            transition: opacity 0.1s ease; /* Smooth opacity transition */
             z-index: -1; /* Place behind content */
         }
     </style>
@@ -122,7 +123,6 @@
 
         // Background Fade Effect
         window.addEventListener('scroll', function() {
-            const heroBefore = document.querySelector('#inicio::before');
             const hero = document.querySelector('#inicio');
             const scrollPosition = window.scrollY;
             const heroHeight = hero.offsetHeight;
@@ -130,9 +130,9 @@
 
             if (scrollPosition <= fadePoint) {
                 const opacity = 1 - (scrollPosition / fadePoint);
-                hero.style.setProperty('--hero-before-opacity', Math.max(opacity, 0));
+                hero.style.opacity = Math.max(opacity, 0);
             } else {
-                hero.style.setProperty('--hero-before-opacity', 0);
+                hero.style.opacity = 0;
             }
         });
     </script>
