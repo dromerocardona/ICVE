@@ -30,54 +30,89 @@
             filter: blur(2px);
             z-index: -1;
         }
+        /* Ensure images scale responsively */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Custom responsive navigation for mobile */
+        .nav-menu {
+            transition: all 0.3s ease;
+        }
+        .nav-menu.hidden {
+            display: none;
+        }
+        @media (max-width: 640px) {
+            .nav-menu {
+                display: none;
+            }
+            .nav-menu.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #7f1d1d;
+                padding: 1rem;
+            }
+            .nav-menu.active li {
+                margin: 0.5rem 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
     <!-- Header -->
     <header class="bg-red-800 text-white shadow-md sticky top-0 z-10">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex flex-col items-center">
-                <h1 class="text-2xl font-bold text-center">Iglesia Cristiana Vida Eterna</h1>
+            <div class="flex items-center justify-between w-full sm:w-auto">
+                <h1 class="text-xl sm:text-2xl font-bold text-center">Iglesia Cristiana Vida Eterna</h1>
+                <button class="sm:hidden text-white focus:outline-none" id="menu-toggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
             </div>
-            <ul class="flex space-x-6">
-                <li><a href="#inicio" class="flex items-center hover:text-blue-200">
+            <ul class="nav-menu flex space-x-6 sm:flex" id="nav-menu">
+                <li><a href="#inicio" class="flex items-center hover:text-blue-200 text-sm sm:text-base">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 9v-9h9v9m-9 0h9"></path></svg>
                     Inicio
                 </a></li>
-                <li><a href="#nosotros" class="flex items-center hover:text-blue-200">
+                <li><a href="#nosotros" class="flex items-center hover:text-blue-200 text-sm sm:text-base">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     Nosotros
                 </a></li>
-                <li><a href="#servicios" class="flex items-center hover:text-blue-200">
+                <li><a href="#servicios" class="flex items-center hover:text-blue-200 text-sm sm:text-base">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     Servicios
                 </a></li>
-                <li><a href="#contacto" class="flex items-center hover:text-blue-200">
+                <li><a href="#contacto" class="flex items-center hover:text-blue-200 text-sm sm:text-base">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    Contactos
+                    Contacto
                 </a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero h-96 relative">
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white">
-            <h2 class="text-4xl font-bold mb-4">Bienvenidos a Iglesia Cristiana Vida Eterna</h2>
-            <p class="text-xl">Únete a nuestra comunidad de fe y amor</p>
+    <section id="inicio" class="hero h-64 sm:h-96 relative">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white px-4">
+            <h2 class="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4">Bienvenidos a Iglesia Cristiana Vida Eterna</h2>
+            <p class="text-lg sm:text-xl text-center">Únete a nuestra comunidad de fe y amor</p>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="nosotros" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <img src="images/logo.png" alt="Iglesia Cristiana Vida Eterna Logo" class="h-32 w-auto mb-4">
+    <section id="nosotros" class="py-8 sm:py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
+                <div class="flex justify-center">
+                    <img src="images/logo.png" alt="Iglesia Cristiana Vida Eterna Logo" class="h-24 sm:h-32 w-auto">
                 </div>
                 <div>
-                    <h2 class="text-3xl font-bold mb-4">Sobre Nosotros</h2>
-                    <p class="text-lg">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-4">Sobre Nosotros</h2>
+                    <p class="text-base sm:text-lg">
                         La Iglesia Cristiana Vida Eterna es una comunidad vibrante dedicada a compartir el amor de Jesucristo. 
                         Nuestra misión es fortalecer la fe, promover la comunión y servir a nuestra comunidad con compasión y gracia.
                     </p>
@@ -87,69 +122,54 @@
     </section>
 
     <!-- Services Section -->
-    <section id="servicios" class="bg-white py-16">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">Horarios</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-6 bg-gray-100 rounded-lg shadow-md transition transform hover:scale-105 hover:bg-red-50">
-                    <svg class="w-12 h-12 mx-auto mb-4 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    <h3 class="text-xl font-semibold mb-2">Domingo</h3>
-                    <p>9:30 AM - Escuela Dominical</p>
-                    <p>10:45 AM - Culto de Adoración</p>
+    <section id="servicios" class="bg-white py-8 sm:py-16">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Horarios</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="text-center p-4 sm:p-6 bg-gray-100 rounded-lg shadow-md transition transform hover:scale-105 hover:bg-red-50">
+                    <svg class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2">Domingo</h3>
+                    <p class="text-sm sm:text-base">9:30 AM - Escuela Dominical</p>
+                    <p class="text-sm sm:text-base">10:45 AM - Culto de Adoración</p>
                 </div>
-                <div class="text-center p-6 bg-gray-100 rounded-lg shadow-md transition transform hover:scale-105 hover:bg-red-50">
-                    <svg class="w-12 h-12 mx-auto mb-4 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                    <h3 class="text-xl font-semibold mb-2">Miércoles</h3>
-                    <p>6:00 PM - Estudios Bíblicos</p>
+                <div class="text-center p-4 sm:p-6 bg-gray-100 rounded-lg shadow-md transition transform hover:scale-105 hover:bg-red-50">
+                    <svg class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2">Miércoles</h3>
+                    <p class="text-sm sm:text-base">6:00 PM - Estudios Bíblicos</p>
                 </div>
-                <div class="text-center p-6 bg-gray-100 rounded-lg shadow-md transition transform hover:scale-105 hover:bg-red-50">
-                    <svg class="w-12 h-12 mx-auto mb-4 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <h3 class="text-xl font-semibold mb-2">Viernes</h3>
-                    <p>7:00 PM - Oración para Damas</p>
+                <div class="text-center p-4 sm:p-6 bg-gray-100 rounded-lg shadow-md transition transform hover:scale-105 hover:bg-red-50">
+                    <svg class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2">Viernes</h3>
+                    <p class="text-sm sm:text-base">7:00 PM - Oración para Damas</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contacto" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">Contáctanos</h2>
+    <section id="contacto" class="py-8 sm:py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Contáctanos</h2>
             <div class="max-w-lg mx-auto text-center">
-                <p class="mb-4">¡Nos encantaría conocerte! Únete a nuestros cultos o contáctanos con cualquier pregunta.</p>
-                <p><strong>Correo:</strong> ICVidaEterna@outlook.com</p>
-                <p><strong>Teléfono:</strong> (205) 734-5003</p>
-                <p><strong>Dirección:</strong> 4036 Spring St. Pinson, AL 35126</p>
-                <div class="flex justify-center mt-6">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1588.524061932546!2d-86.68783798319656!3d33.691061820989034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x888909172cb7ad65%3A0x269d063605aad34c!2sFirst%20Baptist%20Church!5e1!3m2!1sen!2sus!4v1748375280951!5m2!1sen!2sus" class="w-full max-w-md h-64 border-0 rounded-lg shadow-md" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p class="mb-4 text-sm sm:text-base">¡Nos encantaría conocerte! Únete a nuestros cultos o contáctanos con cualquier pregunta.</p>
+                <p class="text-sm sm:text-base"><strong>Correo:</strong> ICVidaEterna@outlook.com</p>
+                <p class="text-sm sm:text-base"><strong>Teléfono:</strong> (205) 734-5003</p>
+                <p class="text-sm sm:text-base"><strong>Dirección:</strong> 4036 Spring St. Pinson, AL 35126</p>
+                <div class="flex justify-center mt-4 sm:mt-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1588.524061932546!2d-86.68783798319656!3d33.691061820989034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x888909172cb7ad65%3A0x269d063605aad34c!2sFirst%20Baptist%20Church!5e1!3m2!1sen!2sus!4v1748375280951!5m2!1sen!2sus" class="w-full h-48 sm:h-64 border-0 rounded-lg shadow-md" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <!--<form class="mt-8 space-y-4">
-                    <div>
-                        <label for="name" class="block text-gray-700 font-medium">Nombre</label>
-                        <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-800">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-gray-700 font-medium">Correo</label>
-                        <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-800">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-gray-700 font-medium">Mensaje</label>
-                        <textarea id="message" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-800" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="bg-red-800 text-white px-6 py-2 rounded hover:bg-red-700 transition duration-300">Enviar</button>
-                </form>-->
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-red-800 text-white py-4">
-        <div class="container mx-auto px-4 text-center">
-            <p>© 2025 Iglesia Cristiana Vida Eterna</p>
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <p class="text-sm sm:text-base">© 2025 Iglesia Cristiana Vida Eterna</p>
         </div>
     </footer>
 
-    <!-- Smooth Scroll Script and Fade Effect -->
+    <!-- Smooth Scroll and Mobile Menu Script -->
     <script>
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -158,7 +178,18 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                // Close mobile menu after clicking
+                const navMenu = document.getElementById('nav-menu');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
             });
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
         });
 
         // Background Fade Effect
